@@ -6,7 +6,7 @@ import java.util.List;
  * @author: Why
  * Created on 2020/12/1 17:02
  * E_Mail why_23456@163.com
- * Desc:
+ * Desc: 首页banner
  */
 public class BannerBean {
 
