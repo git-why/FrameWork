@@ -32,8 +32,11 @@ public class AnimationNestedScrollView extends NestedScrollView {
     }
 
     public interface OnAnimationScrollChangeListener {
-
-
+        /**
+         * 滑动监听
+         *
+         * @param dy
+         */
         void onScrollChanged(float dy);
     }
 
