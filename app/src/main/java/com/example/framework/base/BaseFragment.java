@@ -17,6 +17,9 @@ import com.example.framework.interfaces.IBaseView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/**
+ * @author why
+ */
 public abstract class BaseFragment<P extends IBasePresenter> extends Fragment implements IBaseView {
 
     protected Context mContext;
@@ -44,12 +47,30 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
         }
     }
 
+    /**
+     * 绑定布局
+     *
+     * @return
+     */
     protected abstract int getLayout();
 
+    /**
+     * 绑定数据
+     *
+     * @return
+     */
     protected abstract P onCreatePresenter();
 
+    /**
+     * 绑定控件
+     *
+     * @param view
+     */
     protected abstract void initView(View view);
 
+    /**
+     * 设置数据
+     */
     protected abstract void initData();
 
     @Override

@@ -8,6 +8,9 @@ import com.example.framework.interfaces.home.IHome;
 
 import io.reactivex.subscribers.ResourceSubscriber;
 
+/**
+ * @author why
+ */
 public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
 
     private IBaseView mView;
@@ -36,8 +39,11 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
 
     @Override
     public void onError(Throwable t) {
-        //LoadingUtil.getInstance().hideLoading();
-        if (mView == null) return;
+
+        if (mView == null) {
+            return;
+        }
+
         if (errorMsg != null && TextUtils.isEmpty(errorMsg)) {
             Log.d("sss", "onError: "+t.getMessage());
             mView.showTips(errorMsg);

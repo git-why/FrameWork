@@ -3,11 +3,11 @@ package com.example.framework.util;
 import android.content.Context;
 
 /**
- * @TODO<分辨率转换工具类>
- * @author 小嵩
- * @date 2016-8-3 09:20:46
+ * <分辨率转换工具类>
+ * @author why
  */
 public class DensityUtil {
+
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */

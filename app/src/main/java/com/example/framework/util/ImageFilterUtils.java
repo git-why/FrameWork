@@ -11,13 +11,16 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 /**
  * 高斯模糊
+ * @author why
  */
 
 public class ImageFilterUtils {
 
     private static ImageFilterUtils sInstance;
+
     private ImageFilterUtils() {
     }
+
     public static ImageFilterUtils instance() {
         if (sInstance == null) {
             synchronized (ImageFilterUtils.class) {
@@ -28,6 +31,7 @@ public class ImageFilterUtils {
         }
         return sInstance;
     }
+
     /**
      * @param context   上下文对象
      * @param image     需要模糊的图片
@@ -61,5 +65,4 @@ public class ImageFilterUtils {
         tmpOut.copyTo(outputBitmap);
         return outputBitmap;
     }
-
 }

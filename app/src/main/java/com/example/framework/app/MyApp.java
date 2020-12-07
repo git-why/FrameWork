@@ -2,10 +2,12 @@ package com.example.framework.app;
 
 import android.app.Application;
 
+/**
+ * @author why
+ */
 public class MyApp extends Application {
 
     private static MyApp myApp;
-
 
     @Override
     public void onCreate() {
@@ -16,6 +18,5 @@ public class MyApp extends Application {
     public static MyApp getInstance() {
         return myApp;
     }
-
 
 }

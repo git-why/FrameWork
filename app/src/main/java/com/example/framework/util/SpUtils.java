@@ -6,7 +6,11 @@ import android.content.SharedPreferences;
 
 import com.example.framework.app.MyApp;
 
+/**
+ * @author why
+ */
 public class SpUtils {
+
     private static SpUtils instance;
     private SharedPreferences sp;
 

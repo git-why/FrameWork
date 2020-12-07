@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author why
+ */
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
 
     protected List<T> mData = new ArrayList<>();
@@ -23,9 +26,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         this.mContext = context;
     }
 
-    // 布局
+    /**
+     * 绑定布局
+     *
+     * @return
+     */
     protected abstract int getLayout();
-
 
     @NonNull
     @Override
@@ -44,7 +50,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         });
         return baseViewHolder;
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -83,10 +88,16 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     }
 
     protected interface OnClickItemListener {
+        /**
+         * 接口回调点击事件
+         *
+         * @param position
+         */
         void onClickItem(int position);
     }
 
     public class BaseViewHolder extends RecyclerView.ViewHolder {
+
         //类似于HashMap的集合 key值只能是int 类型
         private SparseArray sparseArray;
 

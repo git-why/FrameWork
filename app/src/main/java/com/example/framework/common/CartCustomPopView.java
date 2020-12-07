@@ -12,7 +12,11 @@ import androidx.annotation.RequiresApi;
 
 import com.example.framework.R;
 
+/**
+ * @author why
+ */
 public class CartCustomPopView extends LinearLayout implements View.OnClickListener {
+
     private Context mContext;
     private TextView txt_subtract;
     private TextView txt_value;
@@ -89,6 +93,7 @@ public class CartCustomPopView extends LinearLayout implements View.OnClickListe
                 }
                 txt_value.setText(value + "");
                 break;
+            default:
         }
     }
 
@@ -99,6 +104,8 @@ public class CartCustomPopView extends LinearLayout implements View.OnClickListe
     }
 
     public interface ClickItem {
+
+
         void onClick(int value);
     }
 }

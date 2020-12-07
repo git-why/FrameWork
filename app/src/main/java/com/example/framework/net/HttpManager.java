@@ -36,7 +36,6 @@ public class HttpManager {
 
     private static volatile HttpManager httpManager;
 
-
     private Retrofit.Builder getRetrofit() {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .client(initOkHttp())
@@ -89,10 +88,11 @@ public class HttpManager {
 
     /**
      * 添加头拦截器
+     * 需要头参数的接口
      */
-    //需要头参数的接口
     private static String[] outHeaderUrl = {""};
-    private static String signUrl = ""; //需要签名的域名  192.168.43.220   192.168.43.164
+    //需要签名的域名  192.168.43.220   192.168.43.164
+    private static String signUrl = "";
 
     static class HeaderInterceptor implements Interceptor {
 
@@ -220,5 +220,4 @@ public class HttpManager {
             }
         }
     }
-
 }

@@ -20,36 +20,36 @@ import java.util.List;
 
 /**
  * 权限的基类
+ *
+ * @author why
  */
 public abstract class BasePermissionActivity extends BaseActivity {
 
-    private static final int PERMISSION_SET_CODE = 1000; //权限设置
+    //权限设置
+    private static final int PERMISSION_SET_CODE = 1000;
 
     private String[] permissionArr;
     private PermisssionCB cb;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //通过系统版本判断当前是否需要动态权限的添加
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //动态权限申请
-            String[] storages = {Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            String[] storages = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
             setPermission(storages);
         }
     }
 
-    protected void setPermission(String[] permissions){
+    protected void setPermission(String[] permissions) {
         permissionArr = permissions;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setPermission();
         }
     }
 
-
-    protected void setPermission(String[] permissions,PermisssionCB cb){
+    protected void setPermission(String[] permissions, PermisssionCB cb) {
         this.cb = cb;
         setPermission(permissions);
     }
@@ -96,7 +96,7 @@ public abstract class BasePermissionActivity extends BaseActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //取消了权限请求
-                                    if(cb != null) {
+                                    if (cb != null) {
                                         cb.callback(false);
                                     }
                                 }
@@ -106,15 +106,19 @@ public abstract class BasePermissionActivity extends BaseActivity {
                 }
 
             } else {
-                if(cb != null){
+                if (cb != null) {
                     cb.callback(false);
                 }
             }
         }
     }
 
-    //权限检测
-    private int checkOpsPermission(){
+    /**
+     * 权限检测
+     *
+     * @return
+     */
+    private int checkOpsPermission() {
         //6.0 api 23
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -145,6 +149,7 @@ public abstract class BasePermissionActivity extends BaseActivity {
 
     /**
      * 权限申请结果
+     *
      * @param requestCode
      * @param permissions
      * @param grantResults
@@ -152,16 +157,19 @@ public abstract class BasePermissionActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case PERMISSION_SET_CODE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if(cb != null){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (cb != null) {
                         cb.callback(true);
                     }
-                }else{
-                    if(cb != null) cb.callback(false);
+                } else {
+                    if (cb != null) {
+                        cb.callback(false);
+                    }
                 }
                 break;
+            default:
         }
     }
 

@@ -9,10 +9,12 @@ import java.util.TimeZone;
 
 /**
  * 日期格式
+ * @author why
  */
 public class DateUtils {
 
     public static Long getDateToTime(String date, String format) {
+
         if (format == null || format.isEmpty()) {
             format = "yyyy-MM-dd HH:mm";
         }
@@ -28,6 +30,7 @@ public class DateUtils {
     }
 
     public static String getStandardDate(Long publish) {
+
         String temp = "";
         try {
             long now = System.currentTimeMillis() / 1000;
@@ -50,7 +53,9 @@ public class DateUtils {
         }
         return temp;
     }
+
     public static String getDate(String endTime, long nowTime) {
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {

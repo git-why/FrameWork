@@ -14,6 +14,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * @author why
+ */
 public class MainActivity extends BaseActivity<IHome.IPresenter> implements IHome.IView {
 
     @BindView(R.id.iv_img)
@@ -33,7 +36,6 @@ public class MainActivity extends BaseActivity<IHome.IPresenter> implements IHom
 
     @Override
     protected void initView() {
-        //
 
     }
 
@@ -51,7 +53,5 @@ public class MainActivity extends BaseActivity<IHome.IPresenter> implements IHom
             Glide.with(this).load(data.get(0).getImagePath()).into(ivImg);
             tvTitle.setText(data.toString());
         }
-
     }
-
 }

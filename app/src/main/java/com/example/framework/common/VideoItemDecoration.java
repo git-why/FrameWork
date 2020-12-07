@@ -6,9 +6,13 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * @author why
+ */
 public class VideoItemDecoration extends RecyclerView.ItemDecoration {
 
-    private int space; //item之间的间距
+    //item之间的间距
+    private int space;
 
     public void setSpace(int value){
         space = value;
@@ -29,7 +33,7 @@ public class VideoItemDecoration extends RecyclerView.ItemDecoration {
         outRect.top = space;
     }
 
-    /* //设置网格布局之间的间隔
+    /* 设置网格布局之间的间隔
         VideoItemDecoration itemDecoration = new VideoItemDecoration();
         itemDecoration.setSpace(20);
         recyclerVideo.addItemDecoration(itemDecoration);*/

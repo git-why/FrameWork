@@ -10,14 +10,18 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * @author why
+ */
 public class RxUtils {
 
     /**
      * rxjava 线程切换统一处理
+     *
      * @param <T>
      * @return
      */
-    public static <T> FlowableTransformer<T,T> rxScheduler(){
+    public static <T> FlowableTransformer<T, T> rxScheduler() {
         return new FlowableTransformer<T, T>() {
             @Override
             public Publisher<T> apply(Flowable<T> upstream) {
@@ -27,8 +31,8 @@ public class RxUtils {
         };
     }
 
+    public static <T> ObservableTransformer<T, T> changeScheduler() {
 
-    public static <T> ObservableTransformer<T,T> changeScheduler(){
         return new ObservableTransformer<T, T>() {
 
             @Override
@@ -38,7 +42,4 @@ public class RxUtils {
             }
         };
     }
-
-
-
 }

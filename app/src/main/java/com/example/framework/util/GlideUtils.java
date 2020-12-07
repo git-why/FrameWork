@@ -9,31 +9,32 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.framework.common.CircleTransform;
 
-public class GildeUtils {
+/**
+ * @author why
+ */
+public class GlideUtils {
 
-
-    public static void loadImg(Context context, String url, ImageView img){
-        if(!TextUtils.isEmpty(url) && img != null){
+    public static void loadImg(Context context, String url, ImageView img) {
+        if (!TextUtils.isEmpty(url) && img != null) {
             Glide.with(context).load(url).into(img);
-        }else{
+        } else {
 
         }
     }
 
     /**
      * 加载圆形图片
+     *
      * @param context
      * @param url
      * @param img
      */
-    public static void loadRoundImg(Context context,String url, ImageView img){
-        if(!TextUtils.isEmpty(url) && img != null){
+    public static void loadRoundImg(Context context, String url, ImageView img) {
+        if (!TextUtils.isEmpty(url) && img != null) {
             RequestOptions options = RequestOptions.bitmapTransform(new CircleTransform(context));
             Glide.with(context).load(url).apply(options).into(img);
-        }else{
+        } else {
 
         }
-
     }
-
 }

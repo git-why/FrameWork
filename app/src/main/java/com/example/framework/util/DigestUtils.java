@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * @author why
+ */
 public class DigestUtils {
 
     /**
@@ -18,7 +21,10 @@ public class DigestUtils {
      * @return
      */
     public static String Encrypt(String source, String encName) {
-        if (TextUtils.isEmpty(source)) return "";
+
+        if (TextUtils.isEmpty(source)) {
+            return "";
+        }
         MessageDigest messageDigest = null;
         String result = null;
         byte[] bytes = source.getBytes();
@@ -44,6 +50,7 @@ public class DigestUtils {
      * @return
      */
     private static String bytesToHex(byte[] bts) {
+
         String des = "";
         String tmp = null;
         for (int i = 0; i < bts.length; i++) {
@@ -64,6 +71,7 @@ public class DigestUtils {
      * @return
      */
     public static String getSignSource(Map<String, String> dataMap) {
+
         TreeMap<String, String> dataTree = new TreeMap<>();
         for (String key : dataMap.keySet()) {
             dataTree.put(key, dataMap.get(key));

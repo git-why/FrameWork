@@ -16,36 +16,44 @@ import androidx.annotation.RequiresApi;
 
 import com.example.framework.app.MyApp;
 
+/**
+ * @author why
+ */
 public class SystemUtils {
 
     /**
      * 设置键盘
+     *
      * @param activity
      */
-    public static void setKeyBroad(Activity activity, boolean open, EditText txt){
+    public static void setKeyBroad(Activity activity, boolean open, EditText txt) {
+
         InputMethodManager im = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(open){
-            im.showSoftInput(txt,InputMethodManager.SHOW_FORCED);
-        }else{
-            im.hideSoftInputFromWindow(txt.getWindowToken(),0);
+        if (open) {
+            im.showSoftInput(txt, InputMethodManager.SHOW_FORCED);
+        } else {
+            im.hideSoftInputFromWindow(txt.getWindowToken(), 0);
         }
     }
 
-
     /**
      * 检查是否有网络
+     *
      * @return
      */
-    public static boolean checkNetWork(){
+    public static boolean checkNetWork() {
+
         ConnectivityManager manager = (ConnectivityManager) MyApp.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         return manager.getActiveNetworkInfo() != null;
     }
 
     /**
      * 当前是否是wifi链接
+     *
      * @return
      */
-    public static boolean isWifiConnected(){
+    public static boolean isWifiConnected() {
+
         ConnectivityManager manager = (ConnectivityManager) MyApp.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return info != null;
@@ -54,56 +62,58 @@ public class SystemUtils {
     /**
      * 检查手机（4,3,2）G是否链接
      */
-    public static boolean isMobileNetworkConnected(){
+    public static boolean isMobileNetworkConnected() {
+
         ConnectivityManager manager = (ConnectivityManager) MyApp.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return info != null;
     }
 
-    public static long getSystemTime(){
+    public static long getSystemTime() {
         return System.currentTimeMillis();
     }
 
     /**
      * 获取屏幕的dpi
+     *
      * @param at
      * @return
      */
-    public static int getDpi(Activity at){
+    public static int getDpi(Activity at) {
         DisplayMetrics dm = new DisplayMetrics();
         at.getWindowManager().getDefaultDisplay().getMetrics(dm);
         return dm.densityDpi;
     }
 
-
     /**
      * 获取包名
+     *
      * @param context
      * @return
      */
-    public static String getPgName(Context context){
+    public static String getPgName(Context context) {
         return context.getPackageName();
     }
 
     /**
      * 获取版本号
+     *
      * @param context
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
-    public static Long getVersionCode(Context context, String pg){
+    public static Long getVersionCode(Context context, String pg) {
+
         PackageInfo pgInfo = null;
         try {
-            pgInfo = context.getPackageManager().getPackageInfo(pg,0);
+            pgInfo = context.getPackageManager().getPackageInfo(pg, 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return Long.valueOf(pgInfo.versionCode);
-        }else{
+        } else {
             return pgInfo.getLongVersionCode();
         }
     }
-
-
 }

@@ -23,27 +23,40 @@ import butterknife.Unbinder;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
+/**
+ * @author why
+ */
 public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
     protected P mPresenter;
     private Unbinder bind;
 
-    private static final int NOT_NOTICE = 2;//如果勾选了不再询问
+    /**
+     * 如果勾选了不再询问
+     */
+    private static final int NOT_NOTICE = 2;
+
     private AlertDialog alertDialog;
     private AlertDialog mDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+
         //绑定ButterKnife
         bind = ButterKnife.bind(this);
+
         //找控件
         initView();
+
         //权限处理
         initPresenter();
+
         //初始化P层
         mPresenter = onCreatePresenter();
         if (mPresenter != null) {
+
             //P层与V层关联
             mPresenter.onAttachView(this);
             //加载数据
@@ -51,14 +64,29 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
         }
     }
 
+    /**
+     * 绑定布局
+     *
+     * @return
+     */
     protected abstract int getLayout();
 
+    /**
+     * 绑定数据
+     *
+     * @return
+     */
     protected abstract P onCreatePresenter();
 
+    /**
+     * 绑定控件
+     */
     protected abstract void initView();
 
+    /**
+     * 设置数据
+     */
     protected abstract void initData();
-
 
     @Override
     public void showTips(String tips) {
@@ -71,6 +99,7 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
     }
 
     private void initPresenter() {
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         } else {
@@ -80,12 +109,11 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == 1) {
             for (int i = 0; i < permissions.length; i++) {
-                if (grantResults[i] == PERMISSION_GRANTED) {//选择了“始终允许”
-
+                //选择了“始终允许”
+                if (grantResults[i] == PERMISSION_GRANTED) {
 
                 } else {
                     if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i])) {//用户选择了禁止不再询问
@@ -127,7 +155,6 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
                         alertDialog.setCanceledOnTouchOutside(false);
                         alertDialog.show();
                     }
-
                 }
             }
         }
