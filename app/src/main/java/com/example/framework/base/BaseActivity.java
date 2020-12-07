@@ -136,10 +136,12 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         //P层调用接触关联的方法
         if (mPresenter != null) {
             mPresenter.onDetach();
         }
+
         //ButterKnife 解除绑定
         if (bind != null) {
             bind.unbind();
